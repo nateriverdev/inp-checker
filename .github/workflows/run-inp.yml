@@ -5,7 +5,8 @@ on:
     branches:
       - master # hoặc branch mà bạn push
   schedule:
-    - cron: "0 8 * * 0" # 8:00 sáng Chủ Nhật (UTC)
+    # - cron: "0 8 * * 0" # 8:00 sáng Chủ Nhật (UTC)
+    - cron: "*/5 * * * *" # Mỗi 5 phút
   workflow_dispatch: # có thể trigger thủ công
 
 jobs:
