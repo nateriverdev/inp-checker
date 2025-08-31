@@ -2,7 +2,8 @@ import puppeteer from "puppeteer";
 import nodemailer from "nodemailer";
 
 const recipients = [
-    "nnear@darasa.io"
+    "nnear@darasa.io",
+    "mars@darasa.io"
 ];
 
 // ======= Cấu hình gửi mail =======
