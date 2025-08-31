@@ -1,20 +1,26 @@
-name: Run INP Check # Tên workflow hiển thị trên GitHub
+name: Run INP Check
 
 on:
   schedule:
-    - cron: "0 8 * * 0" # Chạy tự động lúc 8:00 sáng Chủ Nhật
-  workflow_dispatch: # Cho phép chạy thủ công trên GitHub UI
+    - cron: "0 8 * * 0" # 8:00 sáng Chủ Nhật (UTC)
+  workflow_dispatch: # có thể trigger thủ công
 
 jobs:
   check-inp:
-    runs-on: ubuntu-latest # Sử dụng môi trường Ubuntu mới nhất
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3 # Checkout code từ repo
+      - uses: actions/checkout@v3
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "20" # Cài Node 20
+          node-version: "20"
+
       - name: Install dependencies
-        run: npm install # Cài các package trong package.json
+        run: npm install
+
       - name: Run INP script
-        run: node runCheckInp.js # Chạy script NodeJS của bạn
+        run: node runCheckInp.js
+        env:
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}
+          EMAIL_PASS: ${{ secrets.EMAIL_PASS }}

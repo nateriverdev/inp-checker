@@ -11,9 +11,9 @@ const transporter = nodemailer.createTransport({
     port: 465,
     secure: true,
     auth: {
-        user: "nnear@darasa.io",        // email của bạn
-        pass: "fkrj snzx mhko zkco",      // dùng App Password nếu Gmail
-    },
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+    }
 });
 
 // ======= Hàm màu cho console =======
@@ -134,12 +134,12 @@ const urls = [
     "https://sut88.com/",
     "https://lu88.com/",
     "https://zo88.com/",
-    // "https://gem88.vip/",
-    // "https://pub88.com/",
-    // "https://dv88.com/",
-    // "https://hbet.net/",
-    // "https://888bet.net/",
-    // "https://soi.bet/",
+    "https://gem88.vip/",
+    "https://pub88.com/",
+    "https://dv88.com/",
+    "https://hbet.net/",
+    "https://888bet.net/",
+    "https://soi.bet/",
 ];
 
 // Chạy
