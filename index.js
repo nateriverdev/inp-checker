@@ -28,7 +28,12 @@ const colorText = (text, inp) => {
 // ======= Gửi mail =======
 async function sendMail(results) {
     const now = new Date();
-    const dt = now.toLocaleString();
+    const dt = `${String(now.getDate()).padStart(2, '0')}/` +
+        `${String(now.getMonth() + 1).padStart(2, '0')}/` +
+        `${now.getFullYear()} ` +
+        `${String(now.getHours()).padStart(2, '0')}:` +
+        `${String(now.getMinutes()).padStart(2, '0')}:` +
+        `${String(now.getSeconds()).padStart(2, '0')}`;
     let html = `<h3>Kết quả INP tuần này - ${dt}</h3>
     <table border='1' cellpadding='5' style="border-collapse: collapse;">
       <tr style="background:#ddd">
