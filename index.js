@@ -67,7 +67,7 @@ async function sendMail(results) {
 
 // ======= Puppeteer check INP =======
 async function runCheckInp(urls) {
-    const browser = await puppeteer.launch({ headless: true });
+    const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
     let results = [];
 
     console.log(`🎉 Bắt đầu check ${urls.length} URL...\n`);
