@@ -3,7 +3,7 @@ import nodemailer from "nodemailer";
 
 const recipients = [
     "nnear@darasa.io",
-    "mars@darasa.io"
+    // "mars@darasa.io"
 ];
 
 // ======= Cấu hình gửi mail =======
@@ -25,7 +25,6 @@ const colorText = (text, inp) => {
     if (num <= 500) return `\x1b[33m${text}\x1b[0m`; // vàng
     return `\x1b[31m${text}\x1b[0m`; // đỏ
 };
-
 // ======= Gửi mail =======
 async function sendMail(results) {
     const now = new Date();
@@ -35,12 +34,15 @@ async function sendMail(results) {
         `${String(now.getHours()).padStart(2, '0')}:` +
         `${String(now.getMinutes()).padStart(2, '0')}:` +
         `${String(now.getSeconds()).padStart(2, '0')}`;
+
     let html = `<h3>Kết quả INP tuần này - ${dt}</h3>
     <table border='1' cellpadding='5' style="border-collapse: collapse;">
       <tr style="background:#ddd">
         <th>URL</th>
         <th>INP</th>
+        <th>CrUX Link</th>
       </tr>`;
+
     results.forEach(r => {
         let color = "#000";
         if (r.inp !== "Lỗi hoặc chưa ghi nhận" && r.inp !== "Chưa lấy được") {
@@ -49,9 +51,14 @@ async function sendMail(results) {
             else if (num <= 500) color = "orange";
             else color = "red";
         }
+
+        // Tạo link CrUX
+        const cruxLink = `https://cruxvis.withgoogle.com/#/?view=interactivity&url=${encodeURIComponent(r.url)}&identifier=url`;
+
         html += `<tr>
             <td>${r.url}</td>
             <td style="color:${color}">${r.inp}</td>
+            <td><a href="${cruxLink}" target="_blank">Xem CrUX</a></td>
         </tr>`;
     });
     html += `</table>`;
@@ -65,6 +72,7 @@ async function sendMail(results) {
 
     console.log("📧 Mail đã gửi thành công!");
 }
+
 
 // ======= Puppeteer check INP =======
 async function runCheckInp(urls) {
