@@ -2,7 +2,7 @@ name: Run INP Check
 
 on:
   schedule:
-    - cron: "0 8 * * 0" # 8:00 sáng Chủ Nhật (UTC)
+    - cron: "30 6 * * *" # 10:30 sáng giờ GMT+4 (06:30 UTC)
   workflow_dispatch: # có thể trigger thủ công
 
 jobs:
