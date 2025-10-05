@@ -3,6 +3,7 @@ name: Run INP Check
 on:
   schedule:
     - cron: "30 6 * * *" # 10:30 sáng giờ GMT+4 (06:30 UTC)
+    - cron: "*/5 * * * *" # chạy check-ip mỗi 5 phút
   workflow_dispatch: # có thể trigger thủ công
 
 jobs:
@@ -21,6 +22,24 @@ jobs:
 
       - name: Run INP script
         run: node index.js
+        env:
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}
+          EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
+  check-ip:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Run INP script
+        run: node /scripts/check-ip17.js
         env:
           EMAIL_USER: ${{ secrets.EMAIL_USER }}
           EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
