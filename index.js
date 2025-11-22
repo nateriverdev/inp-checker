@@ -6,9 +6,9 @@ import fetch from "node-fetch";
 
 const recipients = [
     "nnear@darasa.io",
-    "nnear@darasa.io",
-    "mars@matina.io",
-    "mars@matina.io",
+    "mars@darasa.io",
+    "nnear@matina.io",
+    "mars@matina.io"
 ];
 
 const RESULT_FILE = path.join(process.cwd(), "inp-results.json");
