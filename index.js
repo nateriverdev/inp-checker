@@ -235,7 +235,7 @@ async function runCheckInp(urls) {
 
 // ======= Danh sách URL =======
 const urls = [
-    "https://sut88.vip/",
+    "https://sut88.com/",
     "https://lu88.com/",
     "https://gem88.com/",
     "https://pub88.com/",
